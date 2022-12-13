@@ -1,5 +1,5 @@
 import sendRequest from "./send-request";
-const BASE_URL = '/api/currencies';
+const BASE_URL = '/api/favorites';
 
 export function saveCurrency(formData){
     return sendRequest(BASE_URL, 'POST', formData)
@@ -8,4 +8,8 @@ export function saveCurrency(formData){
 
 export function index(userId){
     sendRequest(`${BASE_URL}/${userId}`)
+}
+
+export function deleteCoin(coinId){
+    sendRequest(`${BASE_URL}/${coinId}`, 'DELETE')
 }

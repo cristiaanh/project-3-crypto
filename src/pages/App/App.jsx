@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service';
 import AuthPage from '../AuthPage/AuthPage';
-import NewOrderPage from '../NewOrderPage/NewOrderPage';
 import Favorites from '../Favorites/Favorites';
 import NavBar from '../../components/NavBar/NavBar';
 import './App.css';
@@ -22,6 +21,7 @@ function App() {
     .then(res => {
       setCoins(res.data);
     }).catch(error => console.log(error))
+    
   }, []);
   
   const handleChange = e => {
@@ -36,7 +36,7 @@ function App() {
           <Routes>
             {/* Route components in here */}
             <Route path="/" element={<Main coins ={coins} search ={search} user={user} handleChange={handleChange}/>} />
-            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/favorites" element={<Favorites user={user} />} />
           </Routes>
         </>
         :

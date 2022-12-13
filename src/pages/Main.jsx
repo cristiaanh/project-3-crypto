@@ -3,9 +3,8 @@ import {useState} from 'react';
 import * as currencyApi from '../utilities/currency-api'
 
 function Main({coins, search, user, handleChange}) {
-    console.log('main')
     const [currency, setCurrency]= useState({
-         currency:'',
+         coin:'',
          user:`${user._id}`
      })
 
@@ -15,8 +14,8 @@ function Main({coins, search, user, handleChange}) {
      }
 
      const handleSubmit=async function(event){
+         event.preventDefault()
          await currencyApi.saveCurrency(currency)
-         console.log('submit')
      }
     
   
@@ -28,7 +27,7 @@ function Main({coins, search, user, handleChange}) {
         <>
         <form onSubmit={handleSubmit}>
             <label>currency</label>
-            <input type ='text'value={currency.favorite} onChange={handleFormChange}></input>
+            <input name='coin' type ='text'value={currency.favorite} onChange={handleFormChange}></input>
             <button type='submit' value='Submit'>save coin</button>
         </form>
       <div className='coin-app'>
